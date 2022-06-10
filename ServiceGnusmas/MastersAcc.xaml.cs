@@ -1,5 +1,4 @@
-﻿using MaterialDesignThemes.Wpf;
-using ServiceGnusmas.Class;
+﻿using ServiceGnusmas.Class;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,15 +14,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
 
 namespace ServiceGnusmas
 {
     /// <summary>
-    /// Логика взаимодействия для ManagerWindow.xaml
+    /// Логика взаимодействия для MastersAcc.xaml
     /// </summary>
-    public partial class ManagerWindow : Window
+    public partial class MastersAcc : Window
     {
-        public ManagerWindow()
+        public MastersAcc()
         {
             InitializeComponent();
             DisplayData();
@@ -55,6 +55,16 @@ namespace ServiceGnusmas
             base.OnMouseLeftButtonDown(e);
             DragMove();
         }
+
+        private void AddReq_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BackForm(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
         public void DisplayData()
         {
             using (SqlConnection connection = new SqlConnection(ConnectionDB.conn))
@@ -62,12 +72,12 @@ namespace ServiceGnusmas
                 try
                 {
                     connection.Open();
-                    string query = $@"SELECT Technic.Title AS Title, Technic.PersonalCode AS Code, Technic.ClientPhone AS Phone, Technic.TransferDate AS TD, Technic.ClientName AS Name, TechType.Title AS Type, Status.Title AS Status FROM Technic INNER JOIN TechType on Technic.Type = TechType.id INNER JOIN Status on Technic.Status = Status.id";
+                    string query = $@"SELECT Master.LastName AS LN,  Master.FirstName AS FN,  Master.Patronymic AS Patr, Post.Title AS Post, Master.Phone AS Phone FROM Master INNER JOIN Post on Master.Post = Post.id";
                     SqlCommand cmd = new SqlCommand(query, connection);
-                    DataTable DT = new DataTable("Employee");
+                    DataTable DT = new DataTable("Master");
                     SqlDataAdapter SDA = new SqlDataAdapter(cmd);
                     SDA.Fill(DT);
-                    DGTech.ItemsSource = DT.DefaultView;
+                    DGEmpl.ItemsSource = DT.DefaultView;
                 }
                 catch (Exception exp)
                 {
@@ -76,18 +86,6 @@ namespace ServiceGnusmas
 
 
             }
-        }
-
-        private void AddReq_Click(object sender, RoutedEventArgs e)
-        {
-            RequestWindow request = new RequestWindow();
-            request.ShowDialog();
-        }
-
-        private void AccEmpl_Click(object sender, RoutedEventArgs e)
-        {
-            EmployeesAcc acc = new EmployeesAcc();
-            acc.ShowDialog();
         }
     }
 }
