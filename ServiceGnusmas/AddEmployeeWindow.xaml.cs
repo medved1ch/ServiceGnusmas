@@ -52,11 +52,6 @@ namespace ServiceGnusmas
         {
             Application.Current.Shutdown();
         }
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonDown(e);
-            DragMove();
-        }
         public void CbPostFill()
         {
             dt1.Clear();
@@ -159,27 +154,27 @@ namespace ServiceGnusmas
                         }
                         else
                         {
-                            try
-                            {
-                                var Pass = SimpleCommand.GetHash(txtPass.Password);
-                                string LN = txtLN.Text;
-                                string FN = txtFN.Text;
-                                string Patr = txtPatr.Text;
-                                string Phone = txtPhone.Text;
-                                int idPost;
-                                bool PostName = int.TryParse(cbPost.SelectedValue.ToString(), out idPost);
-                                using (SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Master (Login, LastName, FirstName, Patronymic, Password,Post, Phone) values ('{Login}','{LN}','{FN}','{Patr}', @binaryValue,'{idPost}','{Phone}')", connection))
+                                try
                                 {
+                                    var Pass = SimpleCommand.GetHash(txtPass.Password);
+                                    string LN = txtLN.Text;
+                                    string FN = txtFN.Text;
+                                    string Patr = txtPatr.Text;
+                                    string Phone = txtPhone.Text;
+                                    int idPost;
+                                    bool PostName = int.TryParse(cbPost.SelectedValue.ToString(), out idPost);
+                                    using (SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Master (Login, LastName, FirstName, Patronymic, Password,Post, Phone) values ('{Login}','{LN}','{FN}','{Patr}', @binaryValue,'{idPost}','{Phone}')", connection))
+                                    {
 
-                                    cmd2.Parameters.Add("@binaryValue", SqlDbType.VarBinary).Value = Pass;
-                                    cmd2.ExecuteNonQuery();
-                                    MessageBox.Show("Успешная регистрация!");
+                                        cmd2.Parameters.Add("@binaryValue", SqlDbType.VarBinary).Value = Pass;
+                                        cmd2.ExecuteNonQuery();
+                                        MessageBox.Show("Успешная регистрация!");
+                                    }
                                 }
-                            }
-                            catch (SqlException ex)
-                            {
-                                MessageBox.Show("Ошибка" + ex);
-                            }
+                                catch (SqlException ex)
+                                {
+                                    MessageBox.Show("Ошибка" + ex);
+                                }
                         }
                     }
                 }
@@ -188,6 +183,10 @@ namespace ServiceGnusmas
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        private void BackForm(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
         private void PhoneMask(string Phone)
         {

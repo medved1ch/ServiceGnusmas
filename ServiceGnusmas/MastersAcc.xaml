@@ -12,7 +12,7 @@
         AllowsTransparency="True"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
-    <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">
+    <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}"  Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">
         <materialDesign:DialogHost CloseOnClickAway="True" x:Name="DialogHost">
             <StackPanel>
                 <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 15 10 0" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
@@ -26,7 +26,7 @@
                         <Button x:Name="btnExit" ToolTip="Закрыть приложение" Content="Закрыть приложение" Click="ExitApp"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
-                <DataGrid  AutoGenerateColumns="False" HorizontalAlignment="Center" IsReadOnly="True" GridLinesVisibility="All" Name="DGEmpl"  ColumnWidth="*" Width="1098" Height="597">
+                <DataGrid  AutoGenerateColumns="False" HorizontalAlignment="Center" IsReadOnly="True" GridLinesVisibility="All" Name="DGEmpl"  ColumnWidth="*" Width="1098" Height="597" MouseDoubleClick="DGEmpl_MouseDoubleClick">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Фамилия" Binding="{Binding LN}" Width="1*" FontSize="14" FontWeight="SemiBold" />
                         <DataGridTextColumn Header="Имя" Width="1*" Binding="{Binding FN}" FontSize="14" FontWeight="SemiBold"/>

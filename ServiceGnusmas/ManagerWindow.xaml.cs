@@ -82,6 +82,7 @@ namespace ServiceGnusmas
         {
             RequestWindow request = new RequestWindow();
             request.ShowDialog();
+            DisplayData();
         }
 
         private void AccEmpl_Click(object sender, RoutedEventArgs e)

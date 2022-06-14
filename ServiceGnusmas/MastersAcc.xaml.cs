@@ -45,15 +45,9 @@ namespace ServiceGnusmas
             }
             paletteHelper.SetTheme(theme);
         }
-
         private void ExitApp(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonDown(e);
-            DragMove();
         }
 
         private void AddReq_Click(object sender, RoutedEventArgs e)
@@ -72,7 +66,7 @@ namespace ServiceGnusmas
                 try
                 {
                     connection.Open();
-                    string query = $@"SELECT Master.LastName AS LN,  Master.FirstName AS FN,  Master.Patronymic AS Patr, Post.Title AS Post, Master.Phone AS Phone FROM Master INNER JOIN Post on Master.Post = Post.id";
+                    string query = $@"SELECT Master.id, Master.LastName AS LN,  Master.FirstName AS FN,  Master.Patronymic AS Patr, Post.Title AS Post, Master.Phone AS Phone FROM Master INNER JOIN Post on Master.Post = Post.id";
                     SqlCommand cmd = new SqlCommand(query, connection);
                     DataTable DT = new DataTable("Master");
                     SqlDataAdapter SDA = new SqlDataAdapter(cmd);
@@ -87,5 +81,23 @@ namespace ServiceGnusmas
 
             }
         }
+
+        private void DGEmpl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (DGEmpl.SelectedIndex != -1)
+            {
+                EditEmpl editEmpl = new EditEmpl((DataRowView)DGEmpl.SelectedItem);
+                editEmpl.Owner = this;
+                bool? result = editEmpl.ShowDialog();
+                switch (result)
+                {
+                    default:
+                        DisplayData();
+                        break;
+                }
+            }
+        }
+
+
     }
 }

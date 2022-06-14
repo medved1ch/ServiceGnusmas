@@ -3,10 +3,36 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ServiceGnusmas"
         mc:Ignorable="d"
-        Title="RequestWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="AddEmployeeWindow" Height="650" Width="1000" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+    <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">
+        <materialDesign:DialogHost CloseOnClickAway="True" x:Name="DialogHost">
+            <StackPanel>
+                <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 20 20 0" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
+                    <StackPanel>
+                        <StackPanel Margin="16 10 0 6" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center" Text="Dark Mode"/>
+                            <ToggleButton Cursor="Hand" ToolTip="Вкл. тёмной темы" Margin="65 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
+                        </StackPanel>
+                        <Button ToolTip="Проблемы с авторизацией?" Margin="0 8 0 0" Content="Помощь"/>
+                        <Button x:Name="btnBack" ToolTip="Вернуться назад" Content="Вернуться назад" Click="BackForm"/>
+                        <Button x:Name="btnExit" ToolTip="Закрыть приложение" Content="Закрыть приложение" Click="ExitApp"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+                <ComboBox Margin="-350 40 0 0" x:Name="cbTechType" Width="350" FontSize="18" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedComboBox}" materialDesign:HintAssist.Hint="Выберите тип техники"/>
+                <TextBox Margin="-350 20 0 0" x:Name="txtTitle" Width="350" FontSize="18" materialDesign:HintAssist.Hint="Введите название" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox Margin="-350 20 0 0" x:Name="txtClientName" Width="350" FontSize="18" materialDesign:HintAssist.Hint="Введите ФИО клиента" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                <TextBox Margin="-350 20 0 0" x:Name="txtClientPhone" Text="+7(___)___-__-__" Width="350" FontSize="18" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}" GotFocus="txtClientPhone_GotFocus" PreviewTextInput="txtClientPhone_PreviewTextInput" TextChanged="txtClientPhone_TextChanged" Cursor="Arrow"/>
+                <TextBox Margin="430 -300 0 0" TextWrapping="Wrap" x:Name="txtDescription" Width="350" FontSize="18" materialDesign:HintAssist.Hint="Введите описание проблемы" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedTextBox}" Cursor="Arrow"/>
+                <Button Margin="0 30 0 0" x:Name="CreateReq" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="350" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Создать" Click="CreateReq_Click"/>
+            </StackPanel>
+        </materialDesign:DialogHost>
+    </materialDesign:Card>
 </Window>
