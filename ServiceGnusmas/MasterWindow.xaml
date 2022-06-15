@@ -3,10 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ServiceGnusmas"
         mc:Ignorable="d"
-        Title="MasterWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="ManagerWindow" Height="750" Width="1150"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+    <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">
+        <materialDesign:DialogHost CloseOnClickAway="True" x:Name="DialogHost">
+            <StackPanel>
+                <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 15 10 0" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
+                    <StackPanel>
+                        <StackPanel Margin="16 10 0 6" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center" Text="Dark Mode"/>
+                            <ToggleButton Cursor="Hand" ToolTip="Вкл. тёмной темы" Margin="65 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
+                        </StackPanel>
+                        <Button ToolTip="Проблемы с авторизацией?" Margin="0 8 0 0" Content="Помощь"/>
+                        <Button x:Name="btnExit" ToolTip="Закрыть приложение" Content="Закрыть приложение" Click="ExitApp"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+                <DataGrid  AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="All" HorizontalAlignment="Center" Name="DGTech"  ColumnWidth="*" Width="1098" Height="597">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название техники" Binding="{Binding Title}" Width="1.2*" FontSize="14" FontWeight="SemiBold" />
+                        <DataGridTextColumn Header="Код" Width="0.8*" Binding="{Binding Code}" FontSize="14" FontWeight="SemiBold"/>
+                        <DataGridTextColumn Header="Тип техники" Width="0.8*" Binding="{Binding Type}" FontSize="14" FontWeight="SemiBold"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Margin="810 12 0 0" x:Name="AddReq" ToolTip="Создать новую заявку" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="40" Width="250" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Cursor="Hand"/>
+            </StackPanel>
+        </materialDesign:DialogHost>
+    </materialDesign:Card>
+
 </Window>

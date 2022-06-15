@@ -105,7 +105,7 @@ namespace ServiceGnusmas
                         SqlCommand cmd = new SqlCommand(query, connection);
                         SqlCommand cmd1 = new SqlCommand(query1, connection);
                         object result = cmd.ExecuteScalar();
-                        object result1 = cmd.ExecuteScalar();
+                        object result1 = cmd1.ExecuteScalar();
                         int a = Convert.ToInt32(result);
                         int b = Convert.ToInt32(result1);
                         if (a != 0 || b!=0)

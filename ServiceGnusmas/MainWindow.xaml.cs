@@ -86,6 +86,7 @@ namespace ServiceGnusmas
                                 int postID = Convert.ToInt32(cmd3.ExecuteScalar());
                                 if (postID == 1)
                                 {
+                                    Saver.idPost = 1;
                                     string query2 = $@"SELECT id FROM Employee WHERE Login='{Login}' AND Post ='1'";
                                     SqlCommand cmd2 = new SqlCommand(query2, connection);
                                     int ID = Convert.ToInt32(cmd2.ExecuteScalar());
@@ -100,6 +101,7 @@ namespace ServiceGnusmas
                                 }
                                 else if(postID == 2)
                                 {
+                                    Saver.idPost = 2;
                                     string query2 = $@"SELECT id FROM Employee WHERE Login='{Login}' AND Post ='2'";
                                     SqlCommand cmd2 = new SqlCommand(query2, connection);
                                     int ID = Convert.ToInt32(cmd2.ExecuteScalar());
@@ -114,6 +116,7 @@ namespace ServiceGnusmas
                                 }
                                 else if (postID == 3)
                                 {
+                                    Saver.idPost = 3;
                                     string query2 = $@"SELECT id FROM Employee WHERE Login='{Login}' AND Post ='3'";
                                     SqlCommand cmd2 = new SqlCommand(query2, connection);
                                     int ID = Convert.ToInt32(cmd2.ExecuteScalar());
@@ -128,10 +131,11 @@ namespace ServiceGnusmas
                                 }
                                 else if (postID == 4)
                                 {
+                                    Saver.idPost = 4;
                                     string query2 = $@"SELECT id FROM Master WHERE Login='{Login}' AND Post ='4'";
                                     SqlCommand cmd2 = new SqlCommand(query2, connection);
                                     int ID = Convert.ToInt32(cmd2.ExecuteScalar());
-                                    Saver.idEmpl = ID;
+                                    Saver.idMaster = ID;
                                     string query4 = $@"SELECT (LastName + ' ' + FirstName) AS FIO FROM Employee WHERE id = '{ID}'";
                                     SqlCommand cmd4 = new SqlCommand(query4, connection);
                                     string FIO = Convert.ToString(cmd4.ExecuteScalar());
