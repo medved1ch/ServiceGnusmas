@@ -86,7 +86,8 @@ namespace ServiceGnusmas
         private void AccMastbtn_Click(object sender, RoutedEventArgs e)
         {
             MastersAcc masters = new MastersAcc();
-            masters.ShowDialog();
+            masters.Show();
+            this.Hide();
         }
 
         private void AddEmpl_Click(object sender, RoutedEventArgs e)

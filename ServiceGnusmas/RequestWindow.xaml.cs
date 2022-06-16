@@ -108,6 +108,7 @@ namespace ServiceGnusmas
                             SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Technic (Title, ClientName, ClientPhone, ProblemDescription, Type, TransferDate, PersonalCode, Status) values ('{Title}','{ClientName}','{ClientPhone}','{Description}','{idType}','{DTransfer}','{Code}', '1')", connection);
                             cmd2.ExecuteNonQuery();
                             MessageBox.Show("Заявка успешно сформирована!");
+                            this.Close();
                         }
                         else if(idType == 2)
                         {
@@ -116,6 +117,7 @@ namespace ServiceGnusmas
                             SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Technic (Title, ClientName, ClientPhone, ProblemDescription, Type, TransferDate, PersonalCode, Status) values ('{Title}','{ClientName}','{ClientPhone}','{Description}','{idType}','{DTransfer}','{Code}', '1')", connection);
                             cmd2.ExecuteNonQuery();
                             MessageBox.Show("Заявка успешно сформирована!");
+                            this.Close();
                         }
                         else if (idType == 3)
                         {
@@ -123,6 +125,7 @@ namespace ServiceGnusmas
                             SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Technic (Title, ClientName, ClientPhone, ProblemDescription, Type, TransferDate, PersonalCode, Status) values ('{Title}','{ClientName}','{ClientPhone}','{Description}','{idType}','{DTransfer}','{Code}', '1')", connection);
                             cmd2.ExecuteNonQuery();
                             MessageBox.Show("Заявка успешно сформирована!");
+                            this.Close();
                         }
                         else if (idType == 4)
                         {
@@ -130,6 +133,7 @@ namespace ServiceGnusmas
                             SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Technic (Title, ClientName, ClientPhone, ProblemDescription, Type, TransferDate, PersonalCode, Status) values ('{Title}','{ClientName}','{ClientPhone}','{Description}','{idType}','{DTransfer}','{Code}', '1')", connection);
                             cmd2.ExecuteNonQuery();
                             MessageBox.Show("Заявка успешно сформирована!");
+                            this.Close();
                         }
                         else if (idType == 5)
                         {
@@ -137,6 +141,7 @@ namespace ServiceGnusmas
                             SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Technic (Title, ClientName, ClientPhone, ProblemDescription, Type, TransferDate, PersonalCode, Status) values ('{Title}','{ClientName}','{ClientPhone}','{Description}','{idType}','{DTransfer}','{Code}', '1')", connection);
                             cmd2.ExecuteNonQuery();
                             MessageBox.Show("Заявка успешно сформирована!");
+                            this.Close();
                         }
                         else if (idType == 6)
                         {
@@ -144,6 +149,7 @@ namespace ServiceGnusmas
                             SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Technic (Title, ClientName, ClientPhone, ProblemDescription, Type, TransferDate, PersonalCode, Status) values ('{Title}','{ClientName}','{ClientPhone}','{Description}','{idType}','{DTransfer}','{Code}', '1')", connection);
                             cmd2.ExecuteNonQuery();
                             MessageBox.Show("Заявка успешно сформирована!");
+                            this.Close();
                         }
                         else if (idType == 7)
                         {
@@ -151,6 +157,7 @@ namespace ServiceGnusmas
                             SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Technic (Title, ClientName, ClientPhone, ProblemDescription, Type, TransferDate, PersonalCode, Status) values ('{Title}','{ClientName}','{ClientPhone}','{Description}','{idType}','{DTransfer}','{Code}', '1')", connection);
                             cmd2.ExecuteNonQuery();
                             MessageBox.Show("Заявка успешно сформирована!");
+                            this.Close();
                         }
                         else if (idType == 8)
                         {
@@ -158,6 +165,7 @@ namespace ServiceGnusmas
                             SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Technic (Title, ClientName, ClientPhone, ProblemDescription, Type, TransferDate, PersonalCode, Status) values ('{Title}','{ClientName}','{ClientPhone}','{Description}','{idType}','{DTransfer}','{Code}', '1')", connection);
                             cmd2.ExecuteNonQuery();
                             MessageBox.Show("Заявка успешно сформирована!");
+                            this.Close();
                         }
                         
                         

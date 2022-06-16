@@ -81,9 +81,9 @@ namespace ServiceGnusmas
             {
                 MessageBox.Show("Заполните поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else if (txtUsr.Text.Length < 4)
+            else if (txtUsr.Text.Length < 3)
             {
-                MessageBox.Show(" Логин должен быть больше 3", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(" Логин должен быть больше 2", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtPass.Password.Length < 3)
             {
@@ -129,6 +129,7 @@ namespace ServiceGnusmas
                                     cmd2.Parameters.Add("@binaryValue", SqlDbType.VarBinary).Value = Pass;
                                     cmd2.ExecuteNonQuery();
                                     MessageBox.Show("Успешная регистрация!");
+                                    this.Close();
                                 }
                             }
                             catch (SqlException ex)
@@ -169,6 +170,7 @@ namespace ServiceGnusmas
                                         cmd2.Parameters.Add("@binaryValue", SqlDbType.VarBinary).Value = Pass;
                                         cmd2.ExecuteNonQuery();
                                         MessageBox.Show("Успешная регистрация!");
+                                        this.Close();
                                     }
                                 }
                                 catch (SqlException ex)

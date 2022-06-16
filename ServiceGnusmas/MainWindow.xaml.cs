@@ -146,6 +146,41 @@ namespace ServiceGnusmas
                                 }
 
                             }
+                            else if(count == 0)
+                            {
+                                var Pass1 = SimpleCommand.GetHash(txtPass.Password);
+                                string Login1 = txtUsr.Text.ToLower();
+                                using (SqlCommand cmd2 = new SqlCommand($@"SELECT  COUNT(*) FROM Master WHERE Login='{Login1}' AND Password=@binaryValue1", connection))
+                                {
+                                    cmd2.Parameters.Add("@binaryValue1", SqlDbType.VarBinary).Value = Pass1;
+                                    int count1 = Convert.ToInt32(cmd2.ExecuteScalar());
+                                    if (count1 == 1)
+                                    {
+                                        string query3 = $@"SELECT Post FROM Master WHERE Login='{Login1}'";
+                                        SqlCommand cmd3 = new SqlCommand(query3, connection);
+                                        int postID = Convert.ToInt32(cmd3.ExecuteScalar());
+                                        if (postID == 4)
+                                        {
+                                            Saver.idPost = 1;
+                                            string query2 = $@"SELECT id FROM Master WHERE Login='{Login1}' AND Post ='4'";
+                                            SqlCommand cmd5 = new SqlCommand(query2, connection);
+                                            int ID = Convert.ToInt32(cmd5.ExecuteScalar());
+                                            Saver.idEmpl = ID;
+                                            string query4 = $@"SELECT (LastName + ' ' + FirstName) AS FIO FROM Master WHERE id = '{ID}'";
+                                            SqlCommand cmd4 = new SqlCommand(query4, connection);
+                                            string FIO = Convert.ToString(cmd4.ExecuteScalar());
+                                            MessageBox.Show("Добро пожаловать " + $@"{FIO}" + "!");
+                                            ManagerWindow menu = new ManagerWindow();
+                                            menu.Show();
+                                            this.Close();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Неверное имя пользователя или пароль");
+                                    }
+                                }
+                            }
                             else
                             {
                                 MessageBox.Show("Неверное имя пользователя или пароль");

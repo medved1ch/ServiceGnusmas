@@ -50,13 +50,11 @@ namespace ServiceGnusmas
             Application.Current.Shutdown();
         }
 
-        private void AddReq_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void BackForm(object sender, RoutedEventArgs e)
         {
+            EmployeesAcc employeesAcc = new EmployeesAcc();
+            employeesAcc.Show();
             this.Close();
         }
         public void DisplayData()
@@ -98,6 +96,12 @@ namespace ServiceGnusmas
             }
         }
 
+        private void AddEmpl_Click(object sender, RoutedEventArgs e)
+        {
+            
+                AddEmployeeWindow addEmployee = new AddEmployeeWindow();
+                addEmployee.ShowDialog();
 
+        }
     }
 }

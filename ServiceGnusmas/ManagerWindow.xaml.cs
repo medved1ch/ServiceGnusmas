@@ -62,9 +62,11 @@ namespace ServiceGnusmas
                 try
                 {
                     connection.Open();
-                    string query = $@"SELECT Technic.Title AS Title, Technic.PersonalCode AS Code, Technic.ClientPhone AS Phone, Technic.TransferDate AS TD, Technic.ClientName AS Name, TechType.Title AS Type, Status.Title AS Status FROM Technic INNER JOIN TechType on Technic.Type = TechType.id INNER JOIN Status on Technic.Status = Status.id";
+                    string query = $@"SELECT Technic.id, Technic.Title AS Title, Technic.PersonalCode AS Code, Technic.ClientPhone AS Phone, Technic.TransferDate AS TD, Technic.ClientName AS Name, 
+                    TechType.Title AS Type, Status.Title AS Status, Technic.BreakdownType AS BreakDownType, Technic.WorkTime AS WT, Technic.ProblemDescription AS PD,
+                    Technic.Master AS Master FROM Technic INNER JOIN TechType on Technic.Type = TechType.id INNER JOIN Status on Technic.Status = Status.id";
                     SqlCommand cmd = new SqlCommand(query, connection);
-                    DataTable DT = new DataTable("Employee");
+                    DataTable DT = new DataTable("Technic");
                     SqlDataAdapter SDA = new SqlDataAdapter(cmd);
                     SDA.Fill(DT);
                     DGTech.ItemsSource = DT.DefaultView;
@@ -89,6 +91,22 @@ namespace ServiceGnusmas
         {
             EmployeesAcc acc = new EmployeesAcc();
             acc.ShowDialog();
+        }
+
+        private void DGTech_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (DGTech.SelectedIndex != -1)
+            {
+                TechInfo techInfo = new TechInfo((DataRowView)DGTech.SelectedItem);
+                techInfo.Owner = this;
+                bool? result = techInfo.ShowDialog();
+                switch (result)
+                {
+                    default:
+                        DisplayData();
+                        break;
+                }
+            }
         }
     }
 }

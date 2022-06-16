@@ -84,6 +84,9 @@
     <Compile Include="SparePartsWindow.xaml.cs">
       <DependentUpon>SparePartsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TechInfo.xaml.cs">
+      <DependentUpon>TechInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WarehouseWindow.xaml.cs">
       <DependentUpon>WarehouseWindow.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SparePartsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TechInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
