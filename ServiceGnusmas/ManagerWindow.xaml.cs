@@ -52,8 +52,15 @@ namespace ServiceGnusmas
         }
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
-            DragMove();
+            try
+            {
+                base.OnMouseLeftButtonDown(e);
+                DragMove();
+            }
+            catch
+            {
+
+            }
         }
         public void DisplayData()
         {
@@ -62,7 +69,7 @@ namespace ServiceGnusmas
                 try
                 {
                     connection.Open();
-                    string query = $@"SELECT Technic.id, Technic.Title AS Title, Technic.PersonalCode AS Code, Technic.ClientPhone AS Phone, Technic.TransferDate AS TD, Technic.ClientName AS Name, 
+                    string query = $@"SELECT Technic.id AS id, Technic.Title AS Title, Technic.PersonalCode AS Code, Technic.ClientPhone AS Phone, Technic.TransferDate AS TD, Technic.ClientName AS Name, 
                     TechType.Title AS Type, Status.Title AS Status, Technic.BreakdownType AS BreakDownType, Technic.WorkTime AS WT, Technic.ProblemDescription AS PD,
                     Technic.Master AS Master FROM Technic INNER JOIN TechType on Technic.Type = TechType.id INNER JOIN Status on Technic.Status = Status.id";
                     SqlCommand cmd = new SqlCommand(query, connection);

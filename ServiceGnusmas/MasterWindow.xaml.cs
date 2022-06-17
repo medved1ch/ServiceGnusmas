@@ -52,8 +52,15 @@ namespace ServiceGnusmas
         }
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
-            DragMove();
+            try
+            {
+                base.OnMouseLeftButtonDown(e);
+                DragMove();
+            }
+            catch
+            {
+
+            }
         }
         public void DisplayData()
         {
@@ -62,28 +69,17 @@ namespace ServiceGnusmas
                 try
                 {
                     connection.Open();
-                    List<int> idTechType = new List<int>();
-                    {
-                        string query1 = $@"SELECT TechnicType FROM MasterType WHERE MasterID='{Saver.idMaster}'";
-                        SqlCommand cmd1 = new SqlCommand(query1, connection);
-                        SqlDataReader reader = cmd1.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            idTechType.Add(reader.GetInt32(0));
-                        }
-                        foreach (int idType in idTechType)
-                        {
-                            string query = $@"SELECT Technic.Title AS Title, Technic.PersonalCode AS Code, Technic.ClientPhone AS Phone, Technic.TransferDate AS TD, Technic.ClientName AS Name, TechType.Title AS Type, Status.Title AS Status, Technic.BreakdownType, Technic.WorkTime, Technic.ProblemDescription FROM Technic INNER JOIN TechType on Technic.Type = TechType.id INNER JOIN Status on Technic.Status = Status.id  WHERE Status = 3 AND Type='{idType}' ";
-                            SqlCommand cmd = new SqlCommand(query, connection);
-                            DataTable DT = new DataTable("Technic");
-                            SqlDataAdapter SDA = new SqlDataAdapter(cmd);
-                            SDA.Fill(DT);
-                            DGTech.ItemsSource = DT.DefaultView;
-                        }
-                    }
+                    string query = $@"SELECT Technic.id AS id, Technic.Title AS Title, Technic.PersonalCode AS Code, Technic.ClientPhone AS Phone, Technic.TransferDate AS TD, Technic.ClientName AS Name, 
+                    TechType.Title AS Type, Status.Title AS Status, Technic.BreakdownType AS BreakDownType, Technic.WorkTime AS WT, Technic.ProblemDescription AS PD,
+                    Technic.Master AS Master FROM Technic INNER JOIN TechType on Technic.Type = TechType.id INNER JOIN Status on Technic.Status = Status.id 
+                    WHERE Technic.Status = 3 AND Technic.Master = '{Saver.idMaster}'";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    DataTable DT = new DataTable("Technic");
+                    SqlDataAdapter SDA = new SqlDataAdapter(cmd);
+                    SDA.Fill(DT);
+                    DGTech.ItemsSource = DT.DefaultView; 
 
-                    
-                    
+
                 }
                 catch (Exception exp)
                 {
@@ -92,6 +88,22 @@ namespace ServiceGnusmas
 
 
             }
+        }
+
+        private void DGTech_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+                if (DGTech.SelectedIndex != -1)
+                {
+                    TechInfo techInfo = new TechInfo((DataRowView)DGTech.SelectedItem);
+                    techInfo.Owner = this;
+                    bool? result = techInfo.ShowDialog();
+                    switch (result)
+                    {
+                        default:
+                            DisplayData();
+                            break;
+                    }
+                }
         }
     }
 }

@@ -25,7 +25,7 @@
                         <Button x:Name="btnExit" ToolTip="Закрыть приложение" Content="Закрыть приложение" Click="ExitApp"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
-                <DataGrid  AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="All" HorizontalAlignment="Center" Name="DGTech"  ColumnWidth="*" Width="1098" Height="597">
+                <DataGrid  AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="All" HorizontalAlignment="Center" Name="DGTech"  ColumnWidth="*" Width="1098" Height="597" MouseDoubleClick="DGTech_MouseDoubleClick">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Название техники" Binding="{Binding Title}" Width="1.2*" FontSize="14" FontWeight="SemiBold" />
                         <DataGridTextColumn Header="Код" Width="0.8*" Binding="{Binding Code}" FontSize="14" FontWeight="SemiBold"/>

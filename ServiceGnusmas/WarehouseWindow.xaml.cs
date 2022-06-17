@@ -53,8 +53,15 @@ namespace ServiceGnusmas
         }
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
-            DragMove();
+            try
+            {
+                base.OnMouseLeftButtonDown(e);
+                DragMove();
+            }
+            catch
+            {
+
+            }
         }
         public void DisplayData()
         {

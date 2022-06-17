@@ -52,8 +52,15 @@ namespace ServiceGnusmas
         }
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
-            DragMove();
+            try
+            {
+                base.OnMouseLeftButtonDown(e);
+                DragMove();
+            }
+            catch
+            {
+
+            }
         }
 
         private void loginbtn_Click(object sender, RoutedEventArgs e)
@@ -129,21 +136,6 @@ namespace ServiceGnusmas
                                     whouse.Show();
                                     this.Close();
                                 }
-                                else if (postID == 4)
-                                {
-                                    Saver.idPost = 4;
-                                    string query2 = $@"SELECT id FROM Master WHERE Login='{Login}' AND Post ='4'";
-                                    SqlCommand cmd2 = new SqlCommand(query2, connection);
-                                    int ID = Convert.ToInt32(cmd2.ExecuteScalar());
-                                    Saver.idMaster = ID;
-                                    string query4 = $@"SELECT (LastName + ' ' + FirstName) AS FIO FROM Employee WHERE id = '{ID}'";
-                                    SqlCommand cmd4 = new SqlCommand(query4, connection);
-                                    string FIO = Convert.ToString(cmd4.ExecuteScalar());
-                                    MessageBox.Show("Добро пожаловать " + $@"{FIO}" + "!");
-                                    MasterWindow master = new MasterWindow();
-                                    master.Show();
-                                    this.Close();
-                                }
 
                             }
                             else if(count == 0)
@@ -161,16 +153,16 @@ namespace ServiceGnusmas
                                         int postID = Convert.ToInt32(cmd3.ExecuteScalar());
                                         if (postID == 4)
                                         {
-                                            Saver.idPost = 1;
+                                            Saver.idPost = 4;
                                             string query2 = $@"SELECT id FROM Master WHERE Login='{Login1}' AND Post ='4'";
                                             SqlCommand cmd5 = new SqlCommand(query2, connection);
                                             int ID = Convert.ToInt32(cmd5.ExecuteScalar());
-                                            Saver.idEmpl = ID;
+                                            Saver.idMaster = ID;
                                             string query4 = $@"SELECT (LastName + ' ' + FirstName) AS FIO FROM Master WHERE id = '{ID}'";
                                             SqlCommand cmd4 = new SqlCommand(query4, connection);
                                             string FIO = Convert.ToString(cmd4.ExecuteScalar());
                                             MessageBox.Show("Добро пожаловать " + $@"{FIO}" + "!");
-                                            ManagerWindow menu = new ManagerWindow();
+                                            MasterWindow menu = new MasterWindow();
                                             menu.Show();
                                             this.Close();
                                         }

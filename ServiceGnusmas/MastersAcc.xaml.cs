@@ -49,6 +49,18 @@ namespace ServiceGnusmas
         {
             Application.Current.Shutdown();
         }
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            try
+            {
+                base.OnMouseLeftButtonDown(e);
+                DragMove();
+            }
+            catch
+            {
+
+            }
+        }
 
 
         private void BackForm(object sender, RoutedEventArgs e)

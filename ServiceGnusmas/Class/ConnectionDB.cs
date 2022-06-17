@@ -17,6 +17,7 @@ namespace ServiceGnusmas.Class
                   $@"Data Source=5-115P-04\SQLEXPRESS;" +
                   "Initial Catalog=ServiceSAM;" +
                   "User Id=sa;" +
-                  "Password=qwe123;";
+                  "Password=qwe123;" +
+                  "MultipleActiveResultSets=True";
     }
 }

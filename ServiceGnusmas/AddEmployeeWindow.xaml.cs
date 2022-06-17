@@ -52,6 +52,18 @@ namespace ServiceGnusmas
         {
             Application.Current.Shutdown();
         }
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            try
+            {
+                base.OnMouseLeftButtonDown(e);
+                DragMove();
+            }
+            catch
+            {
+
+            }
+        }
         public void CbPostFill()
         {
             dt1.Clear();

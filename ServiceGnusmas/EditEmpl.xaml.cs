@@ -55,15 +55,21 @@ namespace ServiceGnusmas
             }
             paletteHelper.SetTheme(theme);
         }
-
         private void ExitApp(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
-            DragMove();
+            try
+            {
+                base.OnMouseLeftButtonDown(e);
+                DragMove();
+            }
+            catch
+            {
+
+            }
         }
         public void CbPostFill()
         {

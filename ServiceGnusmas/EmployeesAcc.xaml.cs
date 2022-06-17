@@ -49,7 +49,18 @@ namespace ServiceGnusmas
         {
             Application.Current.Shutdown();
         }
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            try
+            {
+                base.OnMouseLeftButtonDown(e);
+                DragMove();
+            }
+            catch
+            {
 
+            }
+        }
 
         private void AddReq_Click(object sender, RoutedEventArgs e)
         {
@@ -67,7 +78,8 @@ namespace ServiceGnusmas
                 try
                 {
                     connection.Open();
-                    string query = $@"SELECT Employee.id, Employee.LastName AS LN,  Employee.FirstName AS FN,  Employee.Patronymic AS Patr, Post.Title AS Post, Employee.Phone AS Phone FROM Employee INNER JOIN Post on Employee.Post = Post.id";
+                    string query = $@"SELECT Employee.id, Employee.LastName AS LN,  Employee.FirstName AS FN,  
+                    Employee.Patronymic AS Patr, Post.Title AS Post, Employee.Phone AS Phone FROM Employee INNER JOIN Post on Employee.Post = Post.id";
                     SqlCommand cmd = new SqlCommand(query, connection);
                     DataTable DT = new DataTable("Employee");
                     SqlDataAdapter SDA = new SqlDataAdapter(cmd);

@@ -24,10 +24,11 @@ namespace ServiceGnusmas
     /// </summary>
     public partial class TechInfo : Window
     {
+        string id;
         DataTable dt1 = new DataTable("Type");
         DataTable dt2 = new DataTable("Status");
         DataTable dt3 = new DataTable("Master");
-        string id;
+        
         public TechInfo(DataRowView drv)
         {
             InitializeComponent();
@@ -72,11 +73,60 @@ namespace ServiceGnusmas
         {
             this.Close();
         }
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            try
+            {
+                base.OnMouseLeftButtonDown(e);
+                DragMove();
+            }
+            catch
+            {
 
+            }
+        }
+        public void Update()
+        {
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(ConnectionDB.conn))
+                {
+                    connection.Open();
+                    int IdMaster, IdStatus;
+                    bool NameMaster = int.TryParse(cbMaster.SelectedValue.ToString(), out IdMaster);
+                    bool NameStatus = int.TryParse(cbStatus.SelectedValue.ToString(), out IdStatus);
+                    string query = $@"UPDATE Technic SET BreakdownType=@BD, WorkTime=@WT, Master='{IdMaster}', Status='{IdStatus}' WHERE id='{id}' ";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@BD", txtBdType.Text);
+                        cmd.Parameters.AddWithValue("@WT", txtWT.Text);
+                        cmd.ExecuteNonQuery();
+
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        } 
         private void Okbtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Данные успешно изменены");
-            this.Close();
+            try
+            {
+                Update();
+                MessageBox.Show("Данные успешно изменены");
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка");
+            }
         }
         public void CbTypes()
         {
@@ -112,9 +162,9 @@ namespace ServiceGnusmas
                     SqlCommand cmd2 = new SqlCommand(query2, connection);
                     SqlDataAdapter SDA1 = new SqlDataAdapter(cmd2);
                     SDA1.Fill(dt2);
-                    cbTechType.ItemsSource = dt2.DefaultView;
-                    cbTechType.DisplayMemberPath = "Title";
-                    cbTechType.SelectedValuePath = "id";
+                    cbStatus.ItemsSource = dt2.DefaultView;
+                    cbStatus.DisplayMemberPath = "Title";
+                    cbStatus.SelectedValuePath = "id";
                 }
                 catch (Exception ex)
                 {
@@ -134,9 +184,9 @@ namespace ServiceGnusmas
                     SqlCommand cmd1 = new SqlCommand(query1, connection);
                     SqlDataAdapter SDA1 = new SqlDataAdapter(cmd1);
                     SDA1.Fill(dt3);
-                    cbTechType.ItemsSource = dt3.DefaultView;
-                    cbTechType.DisplayMemberPath = "FIO";
-                    cbTechType.SelectedValuePath = "id";
+                    cbMaster.ItemsSource = dt3.DefaultView;
+                    cbMaster.DisplayMemberPath = "FIO";
+                    cbMaster.SelectedValuePath = "id";
                 }
                 catch (Exception ex)
                 {
@@ -229,5 +279,6 @@ namespace ServiceGnusmas
         {
             changeCaretIndex(replacenumber());
         }
+
     }
 }
