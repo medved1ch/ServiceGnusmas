@@ -117,10 +117,18 @@ namespace ServiceGnusmas
                         if(idType == 1)
                         {
                             string Code = "SM" + DateTime.Now.ToString("dd") + DateTime.Now.ToString("MM") + count;
-                            SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Technic (Title, ClientName, ClientPhone, ProblemDescription, Type, TransferDate, PersonalCode, Status) values ('{Title}','{ClientName}','{ClientPhone}','{Description}','{idType}','{DTransfer}','{Code}', '1')", connection);
+                            SqlCommand cmd2 = new SqlCommand($@"INSERT INTO Technic (Title, ClientName, ClientPhone, ProblemDescription, Employee, Type, TransferDate, PersonalCode, Status) values ('{Title}','{ClientName}','{ClientPhone}','{Description}','{Saver.idEmpl}','{idType}','{DTransfer}','{Code}', '1')", connection);
                             cmd2.ExecuteNonQuery();
-                            MessageBox.Show("Заявка успешно сформирована!");
-                            this.Close();
+                            if (MessageBox.Show("Заявка успешно сформирована! Хотите распечатать расписку?", "Печать", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                            {
+                                query = $@"SELECT Technic.id, (Employee.LastName + ' ' + Employee.FirstName) AS FIO, Technic.PersonalCode, Technic.ClientName, Technic.TransferDate FROM Technic INNER JOIN Employee ON Technic.Employee = Employee.id";
+                                DataTable dt = new DataTable();
+                                cmd = new SqlCommand(query, connection);
+                                dt.Load(cmd.ExecuteReader());
+                                ReceiptPrint appPrint = new ReceiptPrint(dt);
+                                appPrint.Owner = this;
+                                this.Close();
+                            }
                         }
                         else if(idType == 2)
                         {

@@ -31,6 +31,7 @@ namespace ServiceGnusmas
         
         public TechInfo(DataRowView drv)
         {
+
             InitializeComponent();
             CbTypes();
             CbMasters();
@@ -47,6 +48,7 @@ namespace ServiceGnusmas
             txtDescription.Text = drv["PD"].ToString();
             txtWT.Text = drv["WT"].ToString();
             id = drv["id"].ToString();
+
         }
         public bool IsDarkTheme { get; set; }
         private readonly PaletteHelper paletteHelper = new PaletteHelper();
