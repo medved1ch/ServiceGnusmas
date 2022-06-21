@@ -21,7 +21,7 @@
                             <TextBlock VerticalAlignment="Center" Text="Dark Mode"/>
                             <ToggleButton Cursor="Hand" ToolTip="Вкл. тёмной темы" Margin="65 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
                         </StackPanel>
-                        <Button ToolTip="Проблемы с авторизацией?" Margin="0 8 0 0" Content="Помощь"/>
+                        <Button  x:Name="Helpbtn" ToolTip="Изучить функционал программы" Margin="0 8 0 0" Content="Справка" Click="Helpbtn_Click"/>
                         <Button x:Name="btnBack" ToolTip="Вернуться назад" Content="Вернуться назад" Click="BackForm"/>
                         <Button x:Name="btnExit" ToolTip="Закрыть приложение" Content="Закрыть приложение" Click="ExitApp"/>
                     </StackPanel>

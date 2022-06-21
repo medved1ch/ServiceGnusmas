@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ServiceGnusmas.Class;
 using MaterialDesignThemes.Wpf;
-
+using System.Reflection;
 
 namespace ServiceGnusmas
 {
@@ -178,6 +178,10 @@ namespace ServiceGnusmas
         {
             changeCaretIndex(replacenumber());
         }
+        private void BackForm(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
         public void UpdateEmployee()
         {
             using (SqlConnection connection = new SqlConnection(ConnectionDB.conn))
@@ -235,6 +239,20 @@ namespace ServiceGnusmas
         {
             UpdateEmployee();
             this.Close();
+        }
+        private void Helpbtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string relPath = @"ServiceHelper.chm";
+                string fullPath = System.IO.Path.Combine(path, relPath);
+                System.Diagnostics.Process.Start($@"{fullPath}");
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
         }
     }
 }

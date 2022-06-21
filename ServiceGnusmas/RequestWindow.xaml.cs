@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ServiceGnusmas.Class;
 using MaterialDesignThemes.Wpf;
+using System.Reflection;
 
 namespace ServiceGnusmas
 {
@@ -287,6 +288,20 @@ namespace ServiceGnusmas
         private void txtClientPhone_GotFocus(object sender, RoutedEventArgs e)
         {
             changeCaretIndex(replacenumber());
+        }
+        private void Helpbtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string relPath = @"ServiceHelper.chm";
+                string fullPath = System.IO.Path.Combine(path, relPath);
+                System.Diagnostics.Process.Start($@"{fullPath}");
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<Window x:Class="ServiceGnusmas.MenuReceiver"
+﻿<Window x:Class="ServiceGnusmas.ChangeStatus"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ServiceGnusmas"
         mc:Ignorable="d"
-        Title="ManagerWindow" Height="750" Width="1150"
+        Title="ManagerWindow" Height="280" Width="550"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{x:Null}"
         AllowsTransparency="True"
@@ -22,21 +22,12 @@
                             <ToggleButton Cursor="Hand" ToolTip="Вкл. тёмной темы" Margin="65 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
                         </StackPanel>
                         <Button  x:Name="Helpbtn" ToolTip="Изучить функционал программы" Margin="0 8 0 0" Content="Справка" Click="Helpbtn_Click"/>
+                        <Button x:Name="btnBack" ToolTip="Вернуться назад" Content="Вернуться назад" Click="BackForm"/>
                         <Button x:Name="btnExit" ToolTip="Закрыть приложение" Content="Закрыть приложение" Click="ExitApp"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
-                <DataGrid  AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="All" HorizontalAlignment="Center" Name="DGTech"  ColumnWidth="*" Width="1098" Height="597" MouseDoubleClick="DGTech_MouseDoubleClick">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Название техники" Binding="{Binding Title}" Width="2*" FontSize="14" FontWeight="SemiBold" />
-                        <DataGridTextColumn Header="Код" Width="0.8*" Binding="{Binding Code}" FontSize="14" FontWeight="SemiBold"/>
-                        <DataGridTextColumn Header="Тип техники" Width="0.8*" Binding="{Binding Type}" FontSize="14" FontWeight="SemiBold"/>
-                        <DataGridTextColumn Header="Имя клиента" Width="1.2*" Binding="{Binding Name}" FontSize="14" FontWeight="SemiBold"/>
-                        <DataGridTextColumn Header="Телефон клиента" Width="1*" Binding="{Binding Phone}" FontSize="14" FontWeight="SemiBold"/>
-                        <DataGridTextColumn Header="Дата передачи" Width="1*" Binding="{Binding TD, StringFormat=\{0:dd.MM.yy\}}" FontSize="14" FontWeight="SemiBold"/>
-                        <DataGridTextColumn Header="Статус" Width="0.8*" Binding="{Binding Status}" FontSize="14" FontWeight="SemiBold"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <Button Margin="810 12 0 0" x:Name="AddReq" ToolTip="Создать новую заявку" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="40" Width="250" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Создать заявку" Click="AddReq_Click"/>
+                <ComboBox Margin="0 30 0 0" x:Name="cbStatus" Width="350" FontSize="18" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedComboBox}" materialDesign:HintAssist.Hint="Выберите статус"/>
+                <Button Margin="100 30 0 0" x:Name="Changebtn" ToolTip="Сменить" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="40" Width="250" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Сменить статус" Cursor="Hand" Click="Changebtn_Click"/>
             </StackPanel>
         </materialDesign:DialogHost>
     </materialDesign:Card>

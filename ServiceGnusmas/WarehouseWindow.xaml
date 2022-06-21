@@ -21,11 +21,11 @@
                             <TextBlock VerticalAlignment="Center" Text="Dark Mode"/>
                             <ToggleButton Cursor="Hand" ToolTip="Вкл. тёмной темы" Margin="65 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
                         </StackPanel>
-                        <Button ToolTip="Проблемы с авторизацией?" Margin="0 8 0 0" Content="Помощь"/>
+                        <Button  x:Name="Helpbtn" ToolTip="Изучить функционал программы" Margin="0 8 0 0" Content="Справка" Click="Helpbtn_Click"/>
                         <Button x:Name="btnExit" ToolTip="Закрыть приложение" Content="Закрыть приложение" Click="ExitApp"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
-                <DataGrid  AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="All" HorizontalAlignment="Center" Name="DGTech"  ColumnWidth="*" Width="1098" Height="597">
+                <DataGrid  AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="All" HorizontalAlignment="Center" Name="DGTech"  ColumnWidth="*" Width="1098" Height="597" MouseDoubleClick="DGTech_MouseDoubleClick">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Название техники" Binding="{Binding Title}" Width="2*" FontSize="14" FontWeight="SemiBold" />
                         <DataGridTextColumn Header="Код" Width="0.8*" Binding="{Binding Code}" FontSize="14" FontWeight="SemiBold"/>
@@ -36,7 +36,7 @@
                         <DataGridTextColumn Header="Статус" Width="0.8*" Binding="{Binding Status}" FontSize="14" FontWeight="SemiBold"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Margin="810 12 0 0" x:Name="AddReq" ToolTip="Создать новую заявку" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="40" Width="250" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Создать заявку" Click="AddReq_Click"/>
+                <Button Margin="810 12 0 0" x:Name="SparePartsbtn" ToolTip="Запасные части" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="40" Width="250" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Запаcные части"/>
             </StackPanel>
         </materialDesign:DialogHost>
     </materialDesign:Card>

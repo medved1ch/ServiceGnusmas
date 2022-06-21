@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -123,7 +124,20 @@ namespace ServiceGnusmas
                 }
             }
         }
-
+        private void Helpbtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string relPath = @"ServiceHelper.chm";
+                string fullPath = System.IO.Path.Combine(path, relPath);
+                System.Diagnostics.Process.Start($@"{fullPath}");
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+        }
 
     }
 }

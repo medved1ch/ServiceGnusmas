@@ -15,13 +15,14 @@
     <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">
         <materialDesign:DialogHost CloseOnClickAway="True" x:Name="DialogHost">
             <StackPanel>
+
                 <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 15 10 0" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
                     <StackPanel>
                         <StackPanel Margin="16 10 0 6" Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock VerticalAlignment="Center" Text="Dark Mode"/>
                             <ToggleButton Cursor="Hand" ToolTip="Вкл. тёмной темы" Margin="65 0 8 0" x:Name="themeToggle" IsChecked="{Binding IsDarkTheme}" Click="toggleTheme"/>
                         </StackPanel>
-                        <Button ToolTip="Проблемы с авторизацией?" Margin="0 8 0 0" Content="Помощь"/>
+                        <Button  x:Name="Helpbtn" ToolTip="Изучить функционал программы" Margin="0 8 0 0" Content="Справка" Click="Helpbtn_Click"/>
                         <Button x:Name="btnExit" ToolTip="Закрыть приложение" Content="Закрыть приложение" Click="ExitApp"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
